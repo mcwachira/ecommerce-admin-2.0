@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { TrashIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import * as z from "zod";
+import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -18,6 +19,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 interface SettingsFormProps {
   initialData: Store;
@@ -38,8 +42,20 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
     defaultValues: initialData,
   });
 
+  const router = useRouter();
+  const params = useParams();
+
   const onSubmit = async (data: SettingsFormValues) => {
-    console.log(data);
+    try {
+      setLoading(true);
+      await axios.patch(`/api/stores/${params.storeId}`, data);
+      router.refresh();
+      toast.success("Store updated.");
+    } catch (error: any) {
+      toast.error("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <>
