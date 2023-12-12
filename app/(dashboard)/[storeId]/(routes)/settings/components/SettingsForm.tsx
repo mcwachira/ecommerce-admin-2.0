@@ -21,7 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
-import AlertModal from "@/components/models/alert-modal";
+import { AlertModal } from "@/components/models/alert-modal";
 
 interface SettingsFormProps {
   initialData: Store;
@@ -45,6 +45,7 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
   const router = useRouter();
   const params = useParams();
 
+  console.log(params);
   const onSubmit = async (data: SettingsFormValues) => {
     try {
       setLoading(true);
@@ -78,7 +79,7 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
     <>
       <AlertModal
         isOpen={open}
-        onClose={() => setOpen(open)}
+        onClose={() => setOpen(false)}
         onConfirm={onDelete}
         loading={loading}
       />
@@ -109,7 +110,11 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder="Store Name" />
+                    <Input
+                      disabled={loading}
+                      placeholder="Store name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

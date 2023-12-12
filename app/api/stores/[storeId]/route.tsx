@@ -51,10 +51,6 @@ export async function DELETE(
       return new NextResponse("user not authenticated", { status: 401 });
     }
 
-    if (!name) {
-      return new NextResponse("Name is required", { status: 401 });
-    }
-
     if (!params.storeId) {
       return new NextResponse("Store id is required", { status: 400 });
     }
