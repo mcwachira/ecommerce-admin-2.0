@@ -23,7 +23,6 @@ const formSchema = z.object({
     message: "Username must be at least 2 characters.",
   }),
 });
-
 const StoreModal = () => {
   const storeModal = useStoreModal();
 
