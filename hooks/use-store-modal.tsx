@@ -6,6 +6,7 @@ interface useStoreModalStore {
   onClose: () => void;
 }
 
+//open and close the modal
 export const useStoreModal = create<useStoreModalStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),

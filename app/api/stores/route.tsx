@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
+    //check if user is signed in
     const { userId } = auth();
     const body = await req.json();
     console.log(body);

@@ -10,6 +10,7 @@ interface SettingPageProps {
 }
 
 const SettingsPage = async ({ params }: SettingPageProps) => {
+  //checks if user is present
   const { userId } = auth();
 
   if (!userId) {
