@@ -20,6 +20,7 @@ export const AlertModal = ({
 }: AlertModalProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
+  //prevents hydration
   useEffect(() => {
     setIsMounted(true);
   }, []);

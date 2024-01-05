@@ -2,6 +2,7 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
+//api to update the store name
 export async function PATCH(
   req: Request,
   { params }: { params: { storeId: string } }
@@ -40,6 +41,7 @@ export async function PATCH(
   }
 }
 
+//api to delete the store
 export async function DELETE(
   req: Request,
   { params }: { params: { storeId: string } }
