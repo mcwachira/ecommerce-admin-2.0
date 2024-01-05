@@ -1,3 +1,4 @@
+"use client";
 import { Badge, BadgeProps } from "@/components/ui/badge";
 import toast from "react-hot-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
