@@ -52,7 +52,7 @@ export async function POST(req: Request, {params}:{params:{storeId:string}
 
         return NextResponse.json(billboard);
     } catch (error) {
-        console.log("BilLboard_POST", error);
+        console.log("Billboard_POST", error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
@@ -70,7 +70,7 @@ export async function GET(req: Request, {params}:{params:{storeId:string}
         }
 
 
-        const billboardS = await prismadb.billboard.findMany({
+        const billboards = await prismadb.billboard.findMany({
          where:{
              storeId:params.storeId
          }
@@ -78,8 +78,7 @@ export async function GET(req: Request, {params}:{params:{storeId:string}
 
         return NextResponse.json(billboards);
     } catch (error) {
-        console.log("BilLboard_GET", error);
+        console.log("Billboard_GET", error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
-/
