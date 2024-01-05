@@ -68,14 +68,14 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
       if (initialData) {
         await axios.patch(
           `/api/${params.storeId}/billboards/${params.billboardId}`,
-          data
+
         );
       }
       await axios.post(`/api/${params.storeId}/billboards`, data);
       router.refresh();
       toast.success(toastMessage);
     } catch (error: any) {
-      toast.error("Something went wrong.");
+      toast.error(error.error);
     } finally {
       setLoading(false);
     }
