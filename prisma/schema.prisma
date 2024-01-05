@@ -12,9 +12,22 @@ datasource db {
 }
 
 model Store {
+  id         String      @id @default(uuid())
+  name       String
+  userId     String
+  billboards Billboard[] @relation("StoretoBillboard")
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @default(now())
+}
+
+model Billboard {
   id        String   @id @default(uuid())
-  name      String
-  userId    String
+  storeId   String
+  store     Store    @relation("StoretoBillboard", fields: [storeId], references: [id])
+  label     String
+  imageUlr  String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+
+  @@index([storeId])
 }
