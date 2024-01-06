@@ -1,7 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Heading from "@/components/ui/heading";
-import { Separator } from "@radix-ui/react-separator";
+import {Separator} from "@/components/ui/separator"
+
 import { Plus } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ import React from "react";
 import {Billboard} from "@prisma/client";
 import {BillboardColumn, columns} from "@/app/(dashboard)/[storeId]/(routes)/billboards/components/colums";
 import {DataTable} from "@/components/ui/data-table";
+import ApiList from "@/components/ui/api-list";
 
 interface BillboardClientProps{
     data:BillboardColumn[]
@@ -35,6 +37,11 @@ const BillBoardClient = ({data}:BillboardClientProps) => {
       </div>
       <Separator />
         <DataTable columns={columns} data={data} searchKey='label'/>
+
+        <Heading title='Api' description='Api calls for Billboards'/>
+        <Separator/>
+        <ApiList entityName='Billboards' entityIdName='billboardId'/>
+
     </>
   );
 };
