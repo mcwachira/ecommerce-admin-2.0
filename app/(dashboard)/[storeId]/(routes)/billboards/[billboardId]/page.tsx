@@ -1,5 +1,4 @@
 import prismadb from "@/lib/prismadb";
-import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import BillboardForm from "./components/BillboardForm";
 

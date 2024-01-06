@@ -73,7 +73,7 @@ export async function PATCH(
                 id: params.billboardId,
             },
             data: {
-                label, imageUlr,
+                label, imageUrl,
             },
         });
 

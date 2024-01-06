@@ -32,6 +32,7 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
                                              columns,
                                              data,
+    searchKey
                                          }: DataTableProps<TData, TValue>) {
 
     const [sorting, setSorting] = React.useState<SortingState>([])

@@ -22,10 +22,9 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
-import ApiAlert from "@/components/ui/api-alert";
-import { useOrigin } from "@/hooks/use-origin";
+
 import ImageUpload from "@/components/ui/image-upload";
-import { name } from "tailwindcss";
+
 
 interface BillboardFormProps {
   initialData: Billboard | null;
@@ -48,7 +47,7 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
 
   const action = initialData ? "save changes" : "Create";
 
-  const origin = useOrigin();
+
 
   const form = useForm<BillboardFormValues>({
     resolver: zodResolver(formSchema),
@@ -66,13 +65,12 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(
-          `/api/${params.storeId}/billboards/${params.billboardId}`,
-
-        );
+        await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data);
+      } else {
+        await axios.post(`/api/${params.storeId}/billboards`, data);
       }
-      await axios.post(`/api/${params.storeId}/billboards`, data);
       router.refresh();
+      router.push(`/${params.storeId}/billboards`)
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error(error.error);
@@ -86,7 +84,7 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/billboards`);
       router.refresh();
-      router.push("/");
+      router.push(`/${params.storeId}/billboards`);
       toast.success("Store deleted successfully");
     } catch (error) {
       toast.error(

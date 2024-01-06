@@ -45,7 +45,6 @@ export async function POST(req: Request, {params}:{params:{storeId:string}
             data: {
                 label,
                 imageUrl,
-
                 storeId:params.storeId
             },
         });
