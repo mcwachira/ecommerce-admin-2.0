@@ -7,9 +7,11 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React from "react";
 import {Billboard} from "@prisma/client";
+import {BillboardColumn, columns} from "@/app/(dashboard)/[storeId]/(routes)/billboards/components/colums";
+import {DataTable} from "@/components/ui/data-table";
 
 interface BillboardClientProps{
-    data:Billboard[]
+    data:BillboardColumn[]
 }
 
 const BillBoardClient = ({data}:BillboardClientProps) => {
@@ -32,6 +34,7 @@ const BillBoardClient = ({data}:BillboardClientProps) => {
         </Button>
       </div>
       <Separator />
+        <DataTable columns={columns} data={data} searchKey='label'/>
     </>
   );
 };
