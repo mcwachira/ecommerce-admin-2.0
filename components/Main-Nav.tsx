@@ -23,6 +23,12 @@ const MainNav = ({
       label: "Billboards",
       active: pathname === `/${params.storeId}/billboards`,
     },
+
+    {
+      href: `/${params.storeId}/categories`,
+      label: "categories",
+      active: pathname === `/${params.storeId}/categories`,
+    },
     {
       href: `/${params.storeId}/settings`,
       label: "Settings",
