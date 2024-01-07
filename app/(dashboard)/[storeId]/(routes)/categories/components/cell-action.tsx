@@ -1,5 +1,5 @@
 'use client'
-import {CategoryColumn} from './colums';
+import {CategoryColumn} from './columns';
 import {
     DropdownMenu,
     DropdownMenuContent,

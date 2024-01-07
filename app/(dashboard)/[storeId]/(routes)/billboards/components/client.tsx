@@ -8,7 +8,7 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React from "react";
 import {Billboard} from "@prisma/client";
-import {BillboardColumn, columns} from "@/app/(dashboard)/[storeId]/(routes)/billboards/components/colums";
+import {BillboardColumn, columns} from "@/app/(dashboard)/[storeId]/(routes)/billboards/components/columns";
 import {DataTable} from "@/components/ui/data-table";
 import ApiList from "@/components/ui/api-list";
 
