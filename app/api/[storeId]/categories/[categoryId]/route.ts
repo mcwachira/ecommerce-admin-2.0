@@ -16,14 +16,14 @@ export async function GET(
         }
 
 
-        const store = await prismadb.category.findUnique({
+        const category = await prismadb.category.findUnique({
             where: {
 
                 id: params.categoryId,
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(category);
     } catch (error) {
         console.log("[STORE_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
@@ -67,7 +67,7 @@ export async function PATCH(
         if(!storeByUserId){
             return new NextResponse("unauthorized", { status: 403 });
         }
-        const store = await prismadb.category.updateMany({
+        const category = await prismadb.category.updateMany({
             where: {
 
                 id: params.categoryId,
@@ -77,9 +77,9 @@ export async function PATCH(
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(category);
     } catch (error) {
-        console.log("[STORE_PATCH]", error);
+        console.log("[CATEGORY_PATCH]", error);
         return new NextResponse("internal error", { status: 500 });
     }
 }
@@ -109,16 +109,16 @@ export async function DELETE(
         if(!storeByUserId){
             return new NextResponse("unauthorized", { status: 403 });
         }
-        const store = await prismadb.category.deleteMany({
+        const category = await prismadb.category.deleteMany({
             where: {
 
                 id: params.categoryId,
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(category);
     } catch (error) {
-        console.log("[STORE_DELETE]", error);
+        console.log("[CATEGORY_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
     }
 }

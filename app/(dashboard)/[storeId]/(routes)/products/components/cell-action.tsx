@@ -1,5 +1,5 @@
 'use client'
-import {SizeColumn} from './columns';
+import {ProductColumn} from './columns';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -15,9 +15,9 @@ import axios from "axios";
 import {useState} from "react";
 
 interface CellActionProps{
-    data:SizeColumn;
+    data:ProductColumn;
 }
-export const CellAction = ({data}:SizeColumn) => {
+export const CellAction = ({data}:ProductColumn) => {
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ export const CellAction = ({data}:SizeColumn) => {
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
+            await axios.delete(`/api/${params.storeId}/products/${data.id}`);
             router.refresh();
             router.push("/");
             toast.success("Store deleted successfully");
@@ -67,7 +67,7 @@ export const CellAction = ({data}:SizeColumn) => {
                 Copy Id
             </DropdownMenuItem>
 
-            <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}>
+            <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/products/${data.id}`)}>
                 <Edit className='mr-2 h-4 w-4' />
                Update            </DropdownMenuItem>
 

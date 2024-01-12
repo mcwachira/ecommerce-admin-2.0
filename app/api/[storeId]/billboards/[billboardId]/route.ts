@@ -16,14 +16,14 @@ export async function GET(
         }
 
 
-        const store = await prismadb.billboard.findUnique({
+        const billboard = await prismadb.billboard.findUnique({
             where: {
 
                 id: params.billboardId,
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(billboard);
     } catch (error) {
         console.log("[STORE_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
@@ -48,12 +48,12 @@ export async function PATCH(
         }
 
         if (!imageUrl) {
-            return new NextResponse("Name is required", { status: 401 });
+            return new NextResponse("Image Url is required", { status: 401 });
         }
 
 
         if (!params.billboardId) {
-            return new NextResponse("Store id is required", { status: 400 });
+            return new NextResponse("Billboard id is required", { status: 400 });
         }
 
 
@@ -67,7 +67,7 @@ export async function PATCH(
         if(!storeByUserId){
             return new NextResponse("unauthorized", { status: 403 });
         }
-        const store = await prismadb.billboard.updateMany({
+        const billboard = await prismadb.billboard.updateMany({
             where: {
 
                 id: params.billboardId,
@@ -77,9 +77,9 @@ export async function PATCH(
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(billboard);
     } catch (error) {
-        console.log("[STORE_PATCH]", error);
+        console.log("[BILLBOARD_PATCH]", error);
         return new NextResponse("internal error", { status: 500 });
     }
 }
@@ -109,16 +109,16 @@ export async function DELETE(
         if(!storeByUserId){
             return new NextResponse("unauthorized", { status: 403 });
         }
-        const store = await prismadb.billboard.deleteMany({
+        const billboard = await prismadb.billboard.deleteMany({
             where: {
 
                 id: params.billboardId,
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(billboard);
     } catch (error) {
-        console.log("[STORE_DELETE]", error);
+        console.log("[BILLBOARD_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
     }
 }

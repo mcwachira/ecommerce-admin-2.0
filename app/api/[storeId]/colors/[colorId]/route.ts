@@ -16,14 +16,14 @@ export async function GET(
         }
 
 
-        const store = await prismadb.color.findUnique({
+        const color = await prismadb.color.findUnique({
             where: {
 
                 id: params.colorId,
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(color);
     } catch (error) {
         console.log("[COLOR_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
@@ -67,7 +67,7 @@ export async function PATCH(
         if(!storeByUserId){
             return new NextResponse("unauthorized", { status: 403 });
         }
-        const store = await prismadb.color.updateMany({
+        const color = await prismadb.color.updateMany({
             where: {
 
                 id: params.colorId,
@@ -77,7 +77,7 @@ export async function PATCH(
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(color);
     } catch (error) {
         console.log("[COLOR_PATCH]", error);
         return new NextResponse("internal error", { status: 500 });
@@ -109,14 +109,14 @@ export async function DELETE(
         if(!storeByUserId){
             return new NextResponse("unauthorized", { status: 403 });
         }
-        const store = await prismadb.color.deleteMany({
+        const color = await prismadb.color.deleteMany({
             where: {
 
                 id: params.colorId,
             },
         });
 
-        return NextResponse.json(store);
+        return NextResponse.json(color);
     } catch (error) {
         console.log("[COLOR_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
