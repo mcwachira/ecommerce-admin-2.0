@@ -40,7 +40,7 @@ const BillBoardClient = ({data}:BillboardClientProps) => {
 
         <Heading title='Api' description='Api calls for Billboards'/>
         <Separator/>
-        <ApiList entityName='Billboards' entityIdName='billboardId'/>
+        <ApiList entityName='billboards' entityIdName='billboardId'/>
 
     </>
   );

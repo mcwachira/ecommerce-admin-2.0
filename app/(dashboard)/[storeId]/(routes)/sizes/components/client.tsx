@@ -40,7 +40,7 @@ const SizesClient = ({data}:SizesClientProps) => {
 
         <Heading title='Api' description='Api calls for Sizes'/>
         <Separator/>
-        <ApiList entityName='Sizes' entityIdName='sizeId'/>
+        <ApiList entityName='sizes' entityIdName='sizeId'/>
 
     </>
   );

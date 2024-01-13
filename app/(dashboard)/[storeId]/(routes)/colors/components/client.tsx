@@ -40,7 +40,7 @@ const ColorsClient = ({data}:ColorsClientProps) => {
 
         <Heading title='Api' description='Api calls for Colors'/>
         <Separator/>
-        <ApiList entityName='Colors' entityIdName='colorId'/>
+        <ApiList entityName='colors' entityIdName='colorId'/>
 
     </>
   );

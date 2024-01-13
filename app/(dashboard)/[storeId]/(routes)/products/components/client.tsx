@@ -40,7 +40,7 @@ const ProductClient = ({data}:ProductClientProps) => {
 
         <Heading title='Api' description='Api calls for Products'/>
         <Separator/>
-        <ApiList entityName='Products' entityIdName='productId'/>
+        <ApiList entityName='products' entityIdName='productId'/>
 
     </>
   );

@@ -40,7 +40,7 @@ const CategoryClient = ({data}:CategoryClientProps) => {
 
         <Heading title='Api' description='Api calls for Categories'/>
         <Separator/>
-        <ApiList entityName='Categories' entityIdName='categoryId'/>
+        <ApiList entityName='categories' entityIdName='categoryId'/>
 
     </>
   );
