@@ -31,7 +31,7 @@ export async function GET(
 
         return NextResponse.json(store);
     } catch (error) {
-        console.log("[STORE_DELETE]", error);
+        console.log("[PRODUCT_GET]", error);
         return new NextResponse("internal error", { status: 500 });
     }
 }
@@ -164,7 +164,7 @@ export async function DELETE(
 
         return NextResponse.json(product);
     } catch (error) {
-        console.log("[STORE_DELETE]", error);
+        console.log("[PRODUCT_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
     }
 }
