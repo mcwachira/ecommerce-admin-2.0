@@ -120,7 +120,7 @@ export async function GET(req: Request, {params}:{params:{storeId:string}
              isArchived:false
 
          },
-            includes:{
+            include:{
              images:true,
                 category:true,
                 color:true,
