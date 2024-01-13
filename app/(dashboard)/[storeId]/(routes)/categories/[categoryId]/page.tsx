@@ -11,6 +11,9 @@ const CategoryPage = async ({
     where: {
       id: params.categoryId,
     },
+    include:{
+      billboard:true,
+    }
   });
 
   const billboards = await prismadb.billboard.findMany({
