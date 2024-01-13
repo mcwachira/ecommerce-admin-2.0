@@ -57,7 +57,7 @@ export async function POST(req: Request, {params}:{params:{storeId:string}
 }
 
 
-//fetches all the billboards
+//fetches all the categories
 export async function GET(req: Request, {params}:{params:{storeId:string}
 
 }) {

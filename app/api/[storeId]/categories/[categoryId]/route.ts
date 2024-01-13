@@ -18,14 +18,16 @@ export async function GET(
 
         const category = await prismadb.category.findUnique({
             where: {
-
-                id: params.categoryId,
+                id: params.categoryId
             },
+            include: {
+                billboard: true
+            }
         });
 
         return NextResponse.json(category);
     } catch (error) {
-        console.log("[STORE_DELETE]", error);
+        console.log("[CATEGORY_DELETE]", error);
         return new NextResponse("internal error", { status: 500 });
     }
 }
