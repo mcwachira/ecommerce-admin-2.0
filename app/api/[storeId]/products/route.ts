@@ -103,7 +103,7 @@ export async function GET(req: Request, {params}:{params:{storeId:string}
         const colorId = searchParams.get('colorId') || undefined
         const sizeId = searchParams.get('sizeId') || undefined
         const isFeatured = searchParams.get('isFeatured')
-        const isArchived = searchParams.get('isArchived')
+        // const isArchived = searchParams.get('isArchived')
 
         if (!params.storeId) {
             return new NextResponse("Store  Id  is required", { status: 400 });
@@ -116,7 +116,7 @@ export async function GET(req: Request, {params}:{params:{storeId:string}
              categoryId,
              colorId,
              sizeId,
-             isFeatured:isFeatured? true:false,
+             isFeatured:isFeatured ? true:undefined,
              isArchived:false
 
          },
