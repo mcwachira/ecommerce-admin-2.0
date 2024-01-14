@@ -116,7 +116,7 @@ export async function PATCH(
                 images:{
                     createMany:{
                         data:[
-                            ...images.map((images:{url:string}) => image)
+                            ...images.map((image:{url:string}) => image)
                         ]
                     }
                 }
