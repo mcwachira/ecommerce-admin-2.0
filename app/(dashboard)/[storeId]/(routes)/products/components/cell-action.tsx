@@ -17,7 +17,7 @@ import {useState} from "react";
 interface CellActionProps{
     data:ProductColumn;
 }
-export const CellAction = ({data}:ProductColumn) => {
+export const CellAction = ({data}:CellActionProps) => {
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
