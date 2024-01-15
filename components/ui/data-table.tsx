@@ -35,11 +35,8 @@ export function DataTable<TData, TValue>({
     searchKey
                                          }: DataTableProps<TData, TValue>) {
 
-    const [sorting, setSorting] = React.useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-        []
-    )
 
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const table = useReactTable({
         data,
         columns,
@@ -48,18 +45,15 @@ export function DataTable<TData, TValue>({
         onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
         state: {
-            sorting,
             columnFilters,
-        },
-    })
+        }
+    });
 
     return (
-
         <div>
-
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Search Key..."
+                    placeholder="Search"
                     value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
                         table.getColumn(searchKey)?.setFilterValue(event.target.value)
@@ -130,6 +124,5 @@ export function DataTable<TData, TValue>({
                 </Button>
             </div>
         </div>
-
     )
 }
