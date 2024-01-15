@@ -97,85 +97,68 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
   };
   return (
     <>
-      <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onConfirm={onDelete}
-        loading={loading}
-      />
-      <div className="flex items-center justify-between">
-        <Heading title={title} description={description} />
-
-        {initialData && (
-          <Button
-            variant="destructive"
-            size="icon"
-            disabled={loading}
-            onClick={() => setOpen(true)}
-          >
-            <TrashIcon className="h-4 w-4" />
-          </Button>
-        )}
-      </div>
-
-      <Separator />
-
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8  w-full"
-        >
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Background Image</FormLabel>
-                <FormControl>
-                  <ImageUpload
-                      value={field.value ? [field.value] : []}
-                      disabled={loading}
-                      onChange={(url) => field.onChange(url)}
-                      onRemove={() => field.onChange('')}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <div className="grid grid-col-3 gap-8">
+      <>
+        <AlertModal
+            isOpen={open}
+            onClose={() => setOpen(false)}
+            onConfirm={onDelete}
+            loading={loading}
+        />
+        <div className="flex items-center justify-between">
+          <Heading title={title} description={description} />
+          {initialData && (
+              <Button
+                  disabled={loading}
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => setOpen(true)}
+              >
+                <Trash className="h-4 w-4" />
+              </Button>
+          )}
+        </div>
+        <Separator />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
             <FormField
-              control={form.control}
-              name="label"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Label</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Billboard name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+                control={form.control}
+                name="imageUrl"
+                render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Background image</FormLabel>
+                      <FormControl>
+                        <ImageUpload
+                            value={field.value ? [field.value] : []}
+                            disabled={loading}
+                            onChange={(url) => field.onChange(url)}
+                            onRemove={() => field.onChange('')}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                )}
             />
-          </div>
-
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
-          </Button>
-        </form>
-      </Form>
-      <Separator />
-      {/* <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        description={`${origin}/api/${params.storeId}`}
-        variant="public"
-      /> */}
-    </>
+            <div className="md:grid md:grid-cols-3 gap-8">
+              <FormField
+                  control={form.control}
+                  name="label"
+                  render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Label</FormLabel>
+                        <FormControl>
+                          <Input disabled={loading} placeholder="Billboard label" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                  )}
+              />
+            </div>
+            <Button disabled={loading} className="ml-auto" type="submit">
+              {action}
+            </Button>
+          </form>
+        </Form>
+      </>
   );
 };
 
