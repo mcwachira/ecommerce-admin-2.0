@@ -11,7 +11,7 @@ interface ImageUploadProps {
   onRemove: (value: string) => void;
   value: string[];
 }
-const ImageUpload = ({ disabled, onChange, onRemove, value }) => {
+const ImageUpload = ({ disabled, onChange, onRemove, value }:ImageUploadProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
