@@ -58,26 +58,25 @@ export async function POST(req: Request, {params}:{params:{storeId:string}
 
 
 //fetches all the categories
-export async function GET(req: Request, {params}:{params:{storeId:string}
 
-}) {
+export async function GET(
+    req: Request,
+    { params }: { params: { storeId: string } }
+) {
     try {
-
-
         if (!params.storeId) {
-            return new NextResponse("Store  Id  is required", { status: 400 });
+            return new NextResponse("Store id is required", { status: 400 });
         }
 
-
         const categories = await prismadb.category.findMany({
-         where:{
-             storeId:params.storeId
-         }
+            where: {
+                storeId: params.storeId
+            }
         });
 
         return NextResponse.json(categories);
     } catch (error) {
-        console.log("Categories_GET", error);
-        return new NextResponse("Internal Error", { status: 500 });
+        console.log('[CATEGORIES_GET]', error);
+        return new NextResponse("Internal error", { status: 500 });
     }
 }
