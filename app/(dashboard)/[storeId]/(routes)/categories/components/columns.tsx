@@ -19,11 +19,10 @@ export const columns: ColumnDef<CategoryColumn>[] = [
         accessorKey: "name",
         header: "Name",
     },
-
     {
         accessorKey: "billboard",
         header: "Billboard",
-        cell:({row}) => <CellAction data={row.original.billboardLabel}/>
+        cell: ({ row }) => row.original.billboardLabel,
     },
 
     {
