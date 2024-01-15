@@ -4,7 +4,7 @@ import { Billboard } from "@prisma/client";
 import React, { useState } from "react";
 import Heading from "@/components/ui/heading";
 import { Button } from "@/components/ui/button";
-import { TrashIcon } from "lucide-react";
+import {Trash, TrashIcon} from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import * as z from "zod";
 import { useParams, useRouter } from "next/navigation";
@@ -97,7 +97,7 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
   };
   return (
     <>
-      
+
         <AlertModal
             isOpen={open}
             onClose={() => setOpen(false)}
