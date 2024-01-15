@@ -157,8 +157,8 @@ const ProductForm = ({ initialData, categories, sizes, colors }: ProductFormProp
                               <ImageUpload
                                   value={field.value.map((image) => image.url)}
                                   disabled={loading}
-                                  onChange={(url) => field.onChange([...field.value, {url}])}
-                                  onRemove={(url) => field.onChange([...field.value.filter((current) => current.url != url)])}
+                                  onChange={(url:string) => field.onChange([...field.value, {url}])}
+                                  onRemove={(url:string) => field.onChange([...field.value.filter((current) => current.url != url)])}
                               />
                           </FormControl>
                           <FormMessage/>
