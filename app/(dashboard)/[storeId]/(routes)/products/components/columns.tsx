@@ -7,8 +7,14 @@ import {CellAction} from "@/app/(dashboard)/[storeId]/(routes)/products/componen
 // You can use a Zod schema here if you want.
 export type ProductColumn = {
     id: string
-    label: string
-    createdAt: string
+    name: string;
+    price: string;
+    category: string;
+    size: string;
+    color: string;
+    createdAt: string;
+    isFeatured: boolean;
+    isArchived: boolean;
 }
 
 export const columns: ColumnDef<ProductColumn>[] = [
