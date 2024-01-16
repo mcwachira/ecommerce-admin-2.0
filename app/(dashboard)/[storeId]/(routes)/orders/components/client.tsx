@@ -1,32 +1,23 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import Heading from "@/components/ui/heading";
-import {Separator} from "@/components/ui/separator"
 
-import { Plus } from "lucide-react";
+import { DataTable } from "@/components/ui/data-table";
+import { Heading } from "@/components/ui/heading";
+import { Separator } from "@/components/ui/separator";
 
-import React from "react";
-import {Order} from "@prisma/client";
-import {OrderColumn, columns} from "@/app/(dashboard)/[storeId]/(routes)/orders/components/columns";
-import {DataTable} from "@/components/ui/data-table";
-import {useRouter} from "next/navigation";
+import { columns, OrderColumn } from "./columns";
 
-
-interface OrderClientProps{
-    data:OrderColumn[]
+interface OrderClientProps {
+  data: OrderColumn[];
 }
 
-const OrderClient = ({data}:OrderClientProps) => {
-
-    const router = useRouter()
-
+export const OrderClient: React.FC<OrderClientProps> = ({
+  data
+}) => {
   return (
-      <>
-          <Heading title={`Orders (${data.length})`} description="Manage orders for your store" />
-          <Separator />
-          <DataTable searchKey="products" columns={columns} data={data} />
-      </>
+    <>
+      <Heading title={`Orders (${data.length})`} description="Manage orders for your store" />
+      <Separator />
+      <DataTable searchKey="products" columns={columns} data={data} />
+    </>
   );
 };
-
-export default OrderClient;

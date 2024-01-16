@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import React from "react";
+
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 
@@ -12,15 +12,14 @@ interface AlertModalProps {
   loading: boolean;
 }
 
-export const AlertModal = ({
+export const AlertModal: React.FC<AlertModalProps> = ({
   isOpen,
   onClose,
   onConfirm,
-  loading,
-}: AlertModalProps) => {
+  loading
+}) => {
   const [isMounted, setIsMounted] = useState(false);
 
-  //prevents hydration
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -28,6 +27,7 @@ export const AlertModal = ({
   if (!isMounted) {
     return null;
   }
+
   return (
     <Modal
       title="Are you sure?"
@@ -39,9 +39,7 @@ export const AlertModal = ({
         <Button disabled={loading} variant="outline" onClick={onClose}>
           Cancel
         </Button>
-        <Button disabled={loading} variant="destructive" onClick={onConfirm}>
-          Continue
-        </Button>
+        <Button disabled={loading} variant="destructive" onClick={onConfirm}>Continue</Button>
       </div>
     </Modal>
   );

@@ -1,83 +1,88 @@
-'use client'
-import {BillboardColumn} from './columns';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import {Button} from "@/components/ui/button";
-import {Edit, MoreHorizontal, Trash, Copy} from "lucide-react";
-import toast from "react-hot-toast";
-import {useRouter, useParams} from "next/navigation";
+"use client";
+
 import axios from "axios";
-import {useState} from "react";
+import { useState } from "react";
+import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
+import { toast } from "react-hot-toast";
+import { useParams, useRouter } from "next/navigation";
 
-interface CellActionProps{
-    data:BillboardColumn;
+import { Button } from "@/components/ui/button";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { AlertModal } from "@/components/modals/alert-modal";
+
+import { BillboardColumn } from "./columns";
+
+interface CellActionProps {
+  data: BillboardColumn;
 }
-export const CellAction = ({data}:CellActionProps) => {
 
-    const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
+export const CellAction: React.FC<CellActionProps> = ({
+  data,
+}) => {
+  const router = useRouter();
+  const params = useParams();
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const params = useParams()
-    const router = useRouter()
-    const onCopy = (id:string) => {
-        navigator.clipboard.writeText(id);
-        toast.success("Api route has been copied to the clipboard");
-    };
+  const onConfirm = async () => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      toast.success('Billboard deleted.');
+      router.refresh();
+    } catch (error) {
+      toast.error('Make sure you removed all categories using this billboard first.');
+    } finally {
+      setOpen(false);
+      setLoading(false);
+    }
+  };
 
-    const onDelete = async () => {
-        try {
-            setLoading(true);
-            await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
-            router.refresh();
-            router.push("/");
-            toast.success("Store deleted successfully");
-        } catch (error) {
-            toast.error(
-                "Make sure you have removed all categories using this billboard  first"
-            );
-        } finally {
-            setLoading(false);
-            setOpen(false);
-        }
-    };
-    return (
-<div>
+  const onCopy = (id: string) => {
+    navigator.clipboard.writeText(id);
+    toast.success('Billboard ID copied to clipboard.');
+  }
 
-    <DropdownMenu>
+  return (
+    <>
+      <AlertModal 
+        isOpen={open} 
+        onClose={() => setOpen(false)}
+        onConfirm={onConfirm}
+        loading={loading}
+      />
+      <DropdownMenu>
         <DropdownMenuTrigger asChild>
-            <Button variant='ghost'  className='h-8 w-8 p-0'>
-
-                {/*sr-only screen readers only*/}
-                <span className='sr-only'>Open Menu</span>
-                <MoreHorizontal className='h-4 w-4'/>
-            </Button>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align='end'>
-            <DropdownMenuLabel>
-                Actions
-            </DropdownMenuLabel>
-
-            <DropdownMenuItem onClick={() => onCopy(data.id)}>
-                <Copy className='mr-2 h-4 w-4'/>
-                Copy Id
-            </DropdownMenuItem>
-
-            <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}>
-                <Edit className='mr-2 h-4 w-4' />
-               Update            </DropdownMenuItem>
-
-            <DropdownMenuItem onClick={()=> onDelete()}>
-                <Trash className='mr-2 h-4 w-4'/>
-                Delete
-            </DropdownMenuItem>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuItem
+            onClick={() => onCopy(data.id)}
+          >
+            <Copy className="mr-2 h-4 w-4" /> Copy Id
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}
+          >
+            <Edit className="mr-2 h-4 w-4" /> Update
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => setOpen(true)}
+          >
+            <Trash className="mr-2 h-4 w-4" /> Delete
+          </DropdownMenuItem>
         </DropdownMenuContent>
-    </DropdownMenu>
-</div>
-    )
-
-}
+      </DropdownMenu>
+    </>
+  );
+};

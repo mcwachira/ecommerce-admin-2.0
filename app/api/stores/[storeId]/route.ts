@@ -1,23 +1,25 @@
-import prismadb from "@/lib/prismadb";
-import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs";
 
-//api to update the store name
+import prismadb from "@/lib/prismadb";
+
+
 export async function PATCH(
   req: Request,
   { params }: { params: { storeId: string } }
 ) {
   try {
     const { userId } = auth();
-
-    if (!userId) {
-      return new NextResponse("user not authenticated", { status: 401 });
-    }
     const body = await req.json();
+
     const { name } = body;
 
+    if (!userId) {
+      return new NextResponse("Unauthenticated", { status: 403 });
+    }
+
     if (!name) {
-      return new NextResponse("Name is required", { status: 401 });
+      return new NextResponse("Name is required", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -26,22 +28,22 @@ export async function PATCH(
 
     const store = await prismadb.store.updateMany({
       where: {
-        userId: userId,
         id: params.storeId,
+        userId,
       },
       data: {
-        name,
-      },
+        name
+      }
     });
-
+  
     return NextResponse.json(store);
   } catch (error) {
-    console.log("[STORE_PATCH]", error);
-    return new NextResponse("internal error", { status: 500 });
+    console.log('[STORE_PATCH]', error);
+    return new NextResponse("Internal error", { status: 500 });
   }
-}
+};
 
-//api to delete the store
+
 export async function DELETE(
   req: Request,
   { params }: { params: { storeId: string } }
@@ -50,7 +52,7 @@ export async function DELETE(
     const { userId } = auth();
 
     if (!userId) {
-      return new NextResponse("user not authenticated", { status: 401 });
+      return new NextResponse("Unauthenticated", { status: 403 });
     }
 
     if (!params.storeId) {
@@ -59,14 +61,14 @@ export async function DELETE(
 
     const store = await prismadb.store.deleteMany({
       where: {
-        userId: userId,
         id: params.storeId,
-      },
+        userId
+      }
     });
-
+  
     return NextResponse.json(store);
   } catch (error) {
-    console.log("[STORE_DELETE]", error);
-    return new NextResponse("internal error", { status: 500 });
+    console.log('[STORE_DELETE]', error);
+    return new NextResponse("Internal error", { status: 500 });
   }
-}
+};
