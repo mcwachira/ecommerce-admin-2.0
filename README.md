@@ -130,7 +130,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Author
 
-- Website - [Add your name here](https://mcwachira.com)
+- Website - [mcwachira.com](https://mcwachira.com)
 - Twitter - [@mc_wachira](https:https://twitter.com/mc_wachira)
 
 
