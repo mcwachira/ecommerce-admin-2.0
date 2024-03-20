@@ -52,7 +52,6 @@ Users should be able to:
 
 
 
-## MAKE SURE YOU HAVE [ADMIN](https://github.com/AntonioErdeljac/next13-ecommerce-admin/tree/master) SETUP FIRST!
 
 For DEMO, use [Stripe Testing Cards](https://stripe.com/docs/testing)
 
